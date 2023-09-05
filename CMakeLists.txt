@@ -203,6 +203,7 @@ elseif(VITA)
       SceNet_stub
       SceNetCtl_stub
       SceLibKernel_stub
+      SceNpTrophy_stub
       dl
       taihen_stub
       SceKernelModulemgr_stub
@@ -223,7 +224,7 @@ elseif(VITA)
     set(VPK "SonicMania.vpk")
     set(TITLE_NAME "Sonic Mania")
     set(TITLE_ID "MANIA0001")
-    set(TITLE_VER "01.00")
+    set(TITLE_VER "01.10")
 
     vita_create_vpk("${VPK}" "${TITLE_ID}" eboot.bin
       NAME "${TITLE_NAME}"

@@ -9,7 +9,7 @@ namespace RSDK
 namespace SKU
 {
 // Dummy API
-#if RETRO_USERCORE_DUMMY
+#if RETRO_USERCORE_DUMMY && RETRO_USE_DUMMY_ACHIEVEMENTS
 #include "RSDK/User/Dummy/DummyAchievements.cpp"
 #endif
 
@@ -26,6 +26,11 @@ namespace SKU
 // Switch API
 #if RETRO_USERCORE_NX
 #include "RSDK/User/NX/NXAchievements.cpp"
+#endif
+
+// Vita API
+#if RETRO_PLATFORM == RETRO_VITA
+#include "RSDK/User/Vita/VitaAchievements.cpp"
 #endif
 
 } // namespace SKU
@@ -62,7 +67,7 @@ void RSDK::SKU::TryUnlockAchievement(AchievementID *id)
 }
 #endif
 
-#if RETRO_VER_EGS || RETRO_USE_DUMMY_ACHIEVEMENTS
+#if RETRO_VER_EGS || RETRO_USE_DUMMY_ACHIEVEMENTS 
 bool32 RSDK::SKU::achievementsEnabled     = true;
 uint16 RSDK::SKU::achievementAniFrames[2] = { 0, 0 };
 Animator RSDK::SKU::achievementAnimator[2];

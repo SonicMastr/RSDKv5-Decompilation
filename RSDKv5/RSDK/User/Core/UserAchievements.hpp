@@ -60,7 +60,7 @@ extern UserAchievements *achievements;
 // ====================
 
 // Dummy API
-#if RETRO_USERCORE_DUMMY
+#if RETRO_USERCORE_DUMMY && RETRO_USE_DUMMY_ACHIEVEMENTS
 #include "RSDK/User/Dummy/DummyAchievements.hpp"
 #endif
 
@@ -77,6 +77,11 @@ extern UserAchievements *achievements;
 // Switch API
 #if RETRO_USERCORE_NX
 #include "RSDK/User/NX/NXAchievements.hpp"
+#endif
+
+// Vita API
+#if RETRO_PLATFORM == RETRO_VITA
+#include "RSDK/User/Vita/VitaAchievements.hpp"
 #endif
 
 inline bool32 GetAchievementsEnabled() { return achievements->enabled; }

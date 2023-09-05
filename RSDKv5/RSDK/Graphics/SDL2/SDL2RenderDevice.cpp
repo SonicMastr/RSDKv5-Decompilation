@@ -78,6 +78,16 @@ bool RenderDevice::Init()
 
     PrintLog(PRINT_NORMAL, "w: %d h: %d windowed: %d", videoSettings.windowWidth, videoSettings.windowHeight, videoSettings.windowed);
 
+#if RETRO_PLATFORM == RETRO_VITA // I have to do this before the renderer is set up. I hate this
+    SceIoStat st;
+    int ret = RSDK::SKU::TrophyInit();
+    if (ret < 0 && sceIoGetstat("ux0:data/Mania/trophies.chk", &st) < 0) {
+        FILE *f = fopen("ux0:data/Mania/trophies.chk", "w");
+        fclose(f);
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_WARNING, "                         Trophy Support", "Sonic Mania Vita features Trophy support, but this is only available if using NoTrpDrm.\nIf you would like to unlock trophies, you can install the NoTrpDrm plugin at anytime.\n           Enjoy! - Jaylon (SonicMastr) Gowie", NULL);
+    }
+#endif
+
     if (!SetupRendering() || !AudioDevice::Init())
         return false;
 

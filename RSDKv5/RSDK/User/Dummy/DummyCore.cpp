@@ -63,7 +63,11 @@ DummyCore *InitDummyCore()
 
     if (achievements)
         delete achievements;
+#if RETRO_USE_DUMMY_ACHIEVEMENTS
     achievements = new DummyAchievements;
+#elif RETRO_PLATFORM == RETRO_VITA
+    achievements = new VitaAchievements;
+#endif
 
     if (leaderboards)
         delete leaderboards;
